@@ -11,6 +11,14 @@ public class StringCalculator {
         return sum(toInts(split(input)));
     }
 
+    private int isPositive(String value){
+        int number = Integer.parseInt(value);
+        if(number < 0){
+            throw new RuntimeException();
+        }
+        return number;
+    }
+
     private boolean isBlack(String input){
         return input == null || input.isEmpty();
     }
@@ -36,7 +44,7 @@ public class StringCalculator {
     private int[] toInts(String[] values){
         int[] numbers = new int[values.length];
         for(int i=0; i<values.length; i++){
-            numbers[i] += Integer.parseInt(values[i]);
+            numbers[i] += isPositive(values[i]);
         }
         return numbers;
     }
