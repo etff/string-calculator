@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
     public int add(String input) {
-        if(input == null || input.isEmpty()){
+        if(isBlack(input)){
             return 0;
         }
         int sum = 0;
@@ -27,5 +27,9 @@ public class StringCalculator {
             }
         }
         return Integer.parseInt(input);
+    }
+
+    private boolean isBlack(String input){
+        return input == null || input.isEmpty();
     }
 }
