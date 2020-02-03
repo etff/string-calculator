@@ -1,8 +1,51 @@
 package kr.team.stringcalculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculator {
     public int add(String input) {
-        // TODO 구현.
-        return 0;
+        if(isBlack(input)){
+            return 0;
+        }
+        return sum(toInts(split(input)));
+    }
+
+    private int isPositive(String value){
+        int number = Integer.parseInt(value);
+        if(number < 0){
+            throw new RuntimeException();
+        }
+        return number;
+    }
+
+    private boolean isBlack(String input){
+        return input == null || input.isEmpty();
+    }
+
+    private int sum(int[] numbers){
+        int sum = 0;
+        for(int number : numbers){
+            sum += number;
+        }
+        return sum;
+    }
+
+    private String[] split(String input){
+        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
+        if(matcher.find()){
+            String customDelimeter = matcher.group(1);
+            String[] values = matcher.group(2).split(customDelimeter);
+            return values;
+        }
+        return input.split(",|:");
+    }
+
+    private int[] toInts(String[] values){
+        int[] numbers = new int[values.length];
+        for(int i=0; i<values.length; i++){
+            numbers[i] += isPositive(values[i]);
+        }
+        return numbers;
     }
 }
