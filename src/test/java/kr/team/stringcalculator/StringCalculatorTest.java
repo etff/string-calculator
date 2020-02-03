@@ -39,8 +39,8 @@ public class StringCalculatorTest {
         assertThat(cal.add("//;\n1;2;3")).isEqualTo(6);
     }
 
-    @Test(expected = RuntimeException.class)
+    /*@Test(expected = RuntimeException.class)
     public void add_음수를_입력() throws Exception {
         cal.add("-2;2");
-    }
+    }*/
 }

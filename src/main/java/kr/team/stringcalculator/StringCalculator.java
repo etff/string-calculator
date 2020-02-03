@@ -4,19 +4,15 @@ import java.util.Optional;
 
 public class StringCalculator {
     public int add(String input) {
-        // TODO 구현.
-        if (input.contains("-")) System.exit(0);
-
         Optional<String> value = Optional.ofNullable(input);
-        if (!value.isPresent()) return 0;
-
-        int result = 0;
+        if (!value.isPresent()|| value==null) return 0;
+        int sum = 0;
         char[] chars = input.toCharArray();
-        for (char aChar : chars) {
-            if ('0' <= aChar && aChar <= '9') {
-                result += Integer.parseInt(String.valueOf(aChar));
+        for (char c : chars) {
+            if ('0' <= c && c <= '9') {
+                sum += Integer.parseInt(String.valueOf(c));
             }
         }
-        return 0;
+        return sum;
     }
 }
