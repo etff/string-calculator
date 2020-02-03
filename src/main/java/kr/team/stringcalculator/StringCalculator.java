@@ -8,17 +8,17 @@ public class StringCalculator {
         if(isBlack(input)){
             return 0;
         }
-        return sum(split(input));
+        return sum(toInts(split(input)));
     }
 
     private boolean isBlack(String input){
         return input == null || input.isEmpty();
     }
 
-    private int sum(String[] numbers){
+    private int sum(int[] numbers){
         int sum = 0;
-        for(int i=0; i<numbers.length; i++){
-            sum += Integer.parseInt(numbers[i]);
+        for(int number : numbers){
+            sum += number;
         }
         return sum;
     }
@@ -27,9 +27,17 @@ public class StringCalculator {
         Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
         if(matcher.find()){
             String customDelimeter = matcher.group(1);
-            String[] split = matcher.group(2).split(customDelimeter);
-            return split;
+            String[] values = matcher.group(2).split(customDelimeter);
+            return values;
         }
         return input.split(",|:");
+    }
+
+    private int[] toInts(String[] values){
+        int[] numbers = new int[values.length];
+        for(int i=0; i<values.length; i++){
+            numbers[i] += Integer.parseInt(values[i]);
+        }
+        return numbers;
     }
 }
