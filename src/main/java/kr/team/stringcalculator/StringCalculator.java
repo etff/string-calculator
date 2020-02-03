@@ -1,6 +1,5 @@
 package kr.team.stringcalculator;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +12,6 @@ public class StringCalculator {
         }
         return 0;
     }
-
     private int sum (int[] nums) {
         return Arrays.stream(nums).sum();
     }
@@ -27,10 +25,8 @@ public class StringCalculator {
         }
         return nums.stream().mapToInt(Integer::parseInt).toArray();
     }
-
     private boolean checkNull(String input) {
         Optional<String> value = Optional.ofNullable(input);
-        if (!value.isPresent() || value == null) return true;
-        return false;
+        return (!value.isPresent() || value == null) ? true : false;
     }
 }
