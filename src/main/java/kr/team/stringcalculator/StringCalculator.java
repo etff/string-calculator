@@ -8,22 +8,15 @@ public class StringCalculator {
         if(isBlack(input)){
             return 0;
         }
-        int sum = 0;
         if(input.contains(",")){
             String[] split = input.split(",|:");
-            for(int i=0; i<split.length; i++){
-                sum += Integer.parseInt(split[i]);
-            }
-            return sum;
+            return sum(split);
         }else{
             Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
             if(matcher.find()){
                 String customDelimeter = matcher.group(1);
                 String[] split = matcher.group(2).split(customDelimeter);
-                for(int i=0; i<split.length; i++){
-                    sum += Integer.parseInt(split[i]);
-                }
-                return sum;
+                return sum(split);
             }
         }
         return Integer.parseInt(input);
@@ -31,5 +24,13 @@ public class StringCalculator {
 
     private boolean isBlack(String input){
         return input == null || input.isEmpty();
+    }
+
+    private int sum(String[] numbers){
+        int sum = 0;
+        for(int i=0; i<numbers.length; i++){
+            sum += Integer.parseInt(numbers[i]);
+        }
+        return sum;
     }
 }
