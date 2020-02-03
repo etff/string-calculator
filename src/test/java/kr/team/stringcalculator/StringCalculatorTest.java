@@ -24,6 +24,7 @@ public class StringCalculatorTest {
         assertThat(cal.add("1")).isEqualTo(1);
     }
 
+
     @Test
     public void add_쉼표구분자() throws Exception {
         assertThat(cal.add("1,3")).isEqualTo(4);
