@@ -1,46 +1,45 @@
 package kr.team.stringcalculator;
 
-import org.junit.Before;
-import org.junit.Test;
+
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 public class StringCalculatorTest {
-    private StringCalculator cal;
+    private StringCalculator calculator;
 
-    @Before
+    @BeforeEach
     public void setup(){
-        cal = new StringCalculator();
+        calculator = new StringCalculator();
     }
 
-    @Test
-    public void add_null_또는_empty() throws Exception {
-        assertThat(cal.add("")).isEqualTo(0);
-        assertThat(cal.add(null)).isEqualTo(0);
+    @DisplayName("빈값인지 테스트")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void testNullOrEmpty(final String input) {
+        assertThat(calculator.add(input)).isZero();
     }
 
-    @Test
-    public void add_숫자하나() throws Exception {
-        assertThat(cal.add("1")).isEqualTo(1);
+    @DisplayName(value = "숫자 두개를 쉼표(,) 구분자로 입력할 경우 두 숫자의 합을 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2"})
+    void testComma(final String text) {
+        assertThat(calculator.add(text)).isSameAs(3);
     }
 
-    @Test
-    public void add_쉼표구분자() throws Exception {
-        assertThat(cal.add("1,3")).isEqualTo(4);
+    @DisplayName(value = "구분자를 쉼표(,) 이외에 콜론(:)을 사용할 수 있다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2:3"})
+    void testColons(final String text) {
+        assertThat(calculator.add(text)).isSameAs(6);
     }
 
-    @Test
-    public void add_쉼표_콜론_구분자() throws Exception {
-        assertThat(cal.add("1,3:2")).isEqualTo(6);
-    }
-
-    @Test
-    public void add_커스텀구분자() throws Exception {
-        assertThat(cal.add("//;\n1;2;3")).isEqualTo(6);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void add_음수를_입력() throws Exception {
-        cal.add("-2;2");
-    }
 }
