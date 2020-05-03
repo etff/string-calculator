@@ -11,8 +11,8 @@ public class StringCalculator {
             return 0;
         }
         List<String> splitText = NumberParser.splitText(input);
-        Numbers numbers = new Numbers(NumberParser.convertToNumbers(splitText));
+        PostiveNumbers postiveNumbers = new PostiveNumbers(NumberParser.convertToNumbers(splitText));
 
-        return numbers.sum();
+        return postiveNumbers.sum();
     }
 }

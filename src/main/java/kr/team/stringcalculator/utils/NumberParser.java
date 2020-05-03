@@ -1,6 +1,6 @@
 package kr.team.stringcalculator.utils;
 
-import kr.team.stringcalculator.Number;
+import kr.team.stringcalculator.PostiveNumber;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -37,10 +37,10 @@ public class NumberParser {
     }
 
 
-    public static List<Number> convertToNumbers(List<String> text) {
+    public static List<PostiveNumber> convertToNumbers(List<String> text) {
         return text.stream()
                 .map(NumberParser::parseToInt)
-                .map(Number::new)
+                .map(PostiveNumber::new)
                 .collect(Collectors.toList());
     }
 
