@@ -7,8 +7,8 @@ public class Numbers {
 
     private final List<Number> numbers;
 
-    public Numbers(List<Number> positiveNumbers) {
-        this.numbers = new ArrayList<>(positiveNumbers);
+    public Numbers(List<Number> numbers) {
+        this.numbers = new ArrayList<>(numbers);
     }
 
     public Integer sum() {
