@@ -13,12 +13,6 @@ public class NumberParser {
     private NumberParser() {
     }
 
-    public static List<String> splitText(String text) {
-        return Stream.of(text.split(DELIMETER))
-                .map(String::trim)
-                .collect(Collectors.toList());
-    }
-
     public static List<Number> convertToNumbers(List<String> text) {
         return text.stream()
                 .map(NumberParser::parseToInt)
